@@ -27,19 +27,9 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   // );
 
   const logo = (
-    <Box
-      ref={ref}
-      component="div"
-      sx={{
-        width: 150,
-        height: 100,
-        display: 'inline-flex',
-        ...sx,
-      }}
-      {...other}
-    >
-     <img src='/assets/logo.png'/>
-    </Box>
+    <div style={{ width: '100%', height: 'fit-content' }}>
+      <img src="/assets/logo.png" />
+    </div>
   );
 
   if (disabledLink) {
@@ -47,7 +37,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   }
 
   return (
-    <Link to="/" component={RouterLink} sx={{ display: 'contents' }}>
+    <Link to="/" component={RouterLink}>
       {logo}
     </Link>
   );
