@@ -50,14 +50,13 @@ export default function LoginPage() {
       </Helmet>
 
       <StyledRoot>
-        <img src="/assets/logo.png" style={{ width: '20%', position: 'absolute', left: '30px' }} />
-
         {mdUp && (
           <StyledSection>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+            <Typography variant="h3" sx={{ position: 'absolute', top: '30%', px: 10 }}>
               Hi, Welcome Back
             </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+            <img src="/assets/logo.png" style={{ width: '80%', marginLeft: '30px' }} />
+            {/* <img src="/assets/illustrations/illustration_login.png" alt="login" /> */}
           </StyledSection>
         )}
 

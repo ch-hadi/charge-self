@@ -22,26 +22,24 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-import CModel from './../components/CModel/CModel';
+import CModel from '../../components/CModel/CModel';
 // components
-import Label from '../components/label';
-import Iconify from '../components/iconify';
-import Scrollbar from '../components/scrollbar';
+import Label from '../../components/label';
+import Iconify from '../../components/iconify';
+import Scrollbar from '../../components/scrollbar';
 // sections
-import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
+import { UserListHead, UserListToolbar } from '../../sections/@dashboard/user';
 // mock
-import USERLIST from '../_mock/user';
-
-
+import USERLIST from '../../_mock/user';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'id', label: 'ID', alignRight: false },
+  { id: 'username', label: 'User Name', alignRight: false },
+  { id: 'userinfo', label: 'User Info', alignRight: false },
+  { id: 'userstatus', label: 'User Status', alignRight: false },
+  { id: 'createtime', label: 'Create Time', alignRight: false },
   { id: '' },
 ];
 
@@ -77,7 +75,6 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function UserPage() {
-
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -92,12 +89,12 @@ export default function UserPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [addUser ,setAddUser]= useState(false);
-  const [editUser , setEditUser] = useState(false);
-  const [editData,setEditData]=useState('')
+  const [addUser, setAddUser] = useState(false);
+  const [editUser, setEditUser] = useState(false);
+  const [editData, setEditData] = useState('');
   const handleOpenMenu = (event) => {
     // setEditUser(true);
-    setEditData(event.row)
+    setEditData(event.row);
     setOpen(event.e.currentTarget);
   };
 
@@ -155,28 +152,26 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
-
-  const handleAddUser=()=>{
-    setAddUser(true)
-  }
-
+  const handleAddUser = () => {
+    setAddUser(true);
+  };
 
   return (
     <>
       <Helmet>
         <title> User </title>
       </Helmet>
-    
+
       <Container>
-        {addUser && <CModel filter='add-user' open={addUser} setOpen={setAddUser}/>}
-        {editUser &&<CModel filter='edit-user' open={editUser} setOpen={setEditUser} data={editData}/>}
+        {addUser && <CModel filter="add-user" open={addUser} setOpen={setAddUser} />}
+        {editUser && <CModel filter="edit-user" open={editUser} setOpen={setEditUser} data={editData} />}
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             User
           </Typography>
-          <Button onClick={handleAddUser} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button onClick={handleAddUser} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New User
-          </Button>
+          </Button> */}
         </Stack>
 
         <Card>
@@ -196,7 +191,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, index, name, role, status, company, avatarUrl, isVerified } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -204,6 +199,7 @@ export default function UserPage() {
                         {/* <TableCell padding="checkbox">
                           <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
                         </TableCell> */}
+                        <TableCell align="left">{id.split('-')[0]}</TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -214,18 +210,16 @@ export default function UserPage() {
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
-
                         <TableCell align="left">{role}</TableCell>
-
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
 
                         <TableCell align="left">
                           <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
                         </TableCell>
 
+                        <TableCell align="center">2023</TableCell>
+
                         <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={(e)=>handleOpenMenu({e,row})}>
+                          <IconButton size="large" color="inherit" onClick={(e) => handleOpenMenu({ e, row })}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
                         </TableCell>
@@ -296,8 +290,12 @@ export default function UserPage() {
           },
         }}
       >
-        <MenuItem onClick={()=>{setEditUser(true);
-        setOpen(null)}}>
+        <MenuItem
+          onClick={() => {
+            setEditUser(true);
+            setOpen(null);
+          }}
+        >
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           Edit
         </MenuItem>

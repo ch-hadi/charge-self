@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 // components
-import Iconify from '../components/iconify';
+import Iconify from '../../components/iconify';
 // sections
 import {
   AppTasks,
@@ -16,8 +16,8 @@ import {
   AppWidgetSummary,
   AppCurrentSubject,
   AppConversionRates,
-} from '../sections/@dashboard/app';
-import CSteppers from '../components/Stepper/CStepper';
+} from '../../sections/@dashboard/app';
+import CSteppers from '../../components/Stepper/CStepper';
 
 // ----------------------------------------------------------------------
 
@@ -27,9 +27,8 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Admin Penal </title>
+        <title> Dashboard | CHARGE URSELF Admin Penal </title>
       </Helmet>
-
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back
