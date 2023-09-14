@@ -15,7 +15,7 @@ export default function CSelect(props) {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">{props.label}</InputLabel>
+        <InputLabel id="demo-simple-select-label">Add</InputLabel>
         <Select
           size="medium"
           labelId="demo-simple-select-label"

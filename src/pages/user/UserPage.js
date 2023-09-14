@@ -81,6 +81,10 @@ export default function UserPage() {
 
   const [order, setOrder] = useState('asc');
 
+  const [userOrderTable, setUserOrderTable] = useState(false);
+
+  const [operationLog, setOperationLog] = useState(false);
+
   const [selected, setSelected] = useState([]);
 
   const [orderBy, setOrderBy] = useState('name');
@@ -163,8 +167,13 @@ export default function UserPage() {
       </Helmet>
 
       <Container>
-        {addUser && <CModel filter="add-user" open={addUser} setOpen={setAddUser} />}
         {editUser && <CModel filter="edit-user" open={editUser} setOpen={setEditUser} data={editData} />}
+        {userOrderTable && (
+          <CModel filter="user-order-table" open={userOrderTable} setOpen={setUserOrderTable} data={editData} />
+        )}
+        {operationLog && (
+          <CModel filter="user-opration-log" open={operationLog} setOpen={setOperationLog} data={editData} />
+        )}
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             User
@@ -281,7 +290,7 @@ export default function UserPage() {
         PaperProps={{
           sx: {
             p: 1,
-            width: 140,
+            width: 160,
             '& .MuiMenuItem-root': {
               px: 1,
               typography: 'body2',
@@ -297,12 +306,29 @@ export default function UserPage() {
           }}
         >
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
+          Edit Name
         </MenuItem>
-
+        <MenuItem
+          onClick={() => {
+            setUserOrderTable(true);
+            setOpen(null);
+          }}
+        >
+          <Iconify icon={'eva:shopping-cart-outline'} sx={{ mr: 2 }} />
+          Order List
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            setOperationLog(true);
+            setOpen(null);
+          }}
+        >
+          <Iconify icon={'eva:file-text-outline'} sx={{ mr: 2 }} />
+          Operation Log
+        </MenuItem>
         <MenuItem sx={{ color: 'error.main' }}>
-          <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
-          Delete
+          <Iconify icon={'solar:user-cross-bold'} sx={{ mr: 2 }} />
+          Disable
         </MenuItem>
       </Popover>
     </>
