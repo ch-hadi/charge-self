@@ -13,22 +13,40 @@ export default function CSelect(props) {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    // <Box sx={{ minWidth: props.width ? props.width : 120 }}>
+    //   <FormControl fullWidth>
+    //     <InputLabel id="demo-simple-select-label">Add</InputLabel>
+    //     <Select
+    //       size="medium"
+    //       labelId="demo-simple-select-label"
+    //       id="demo-simple-select"
+    //       value={props.value}
+    //       // label="Select your profile type"
+    //       onChange={handleChange}
+    //     >
+    //       {props.data.map((item) => (
+    //         <MenuItem key={item.value} value={item.value}>
+    //           {item.name}
+    //         </MenuItem>
+    //       ))}
+    //     </Select>
+    //   </FormControl>
+    // </Box>
+    <Box sx={{ minWidth: props.width ? props.width : 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Add</InputLabel>
+        <InputLabel id="demo-simple-select-label">{props.label}</InputLabel>
         <Select
-          size="medium"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={props.value}
-          // label="Select your profile type"
+          //       // label="Select your profile type"
           onChange={handleChange}
+          label={props.label}
+          // onChange={handleChange}
         >
-          {props.data.map((item) => (
-            <MenuItem key={item.value} value={item.value}>
-              {item.name}
-            </MenuItem>
-          ))}
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
     </Box>

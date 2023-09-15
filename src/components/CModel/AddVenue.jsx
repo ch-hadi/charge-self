@@ -4,8 +4,23 @@ import CSelect from '../CSelect/CSelect';
 import CButton from '../CButton/CButton';
 import CustomInput from '../CTextField/CustomInput';
 import CountrySelector from '../countryList/CountrySelector ';
+import GoogleLocationField from '../GoogleLocationField/GoogleLocationField';
+import CTimePicker from '../CTimePicker/CTimePicker';
+import { Box } from '@mui/material';
+// import { useMyTheme } from '../../theme/overrides/myTheme';
 
 const AddVenue = () => {
+  // const classes = useMyTheme();
+  const [addVenueData, setAddVenueData] = useState({
+    phone: '',
+    venue_name: '',
+    address: '',
+    detailed_address: '',
+    venue_commission: '',
+    venue_remark: '',
+    venue_area: '',
+  });
+
   const [selectedProfile, setSelectedProfile] = useState('');
   const handleAdd = () => {
     console.log('added');
@@ -46,19 +61,64 @@ const AddVenue = () => {
         }}
       >
         <CountrySelector />
-        <CTextField full={true} label="Phone Number" margin="10px 0px" width="48%" />
-        <CTextField full={true} label="Location" margin="10px 0px" width="48%" />
-        <CTextField full={true} label="Venue Name" margin="10px 0px" width="48%" />
-        <CTextField full={true} label="Address" margin="10px 0px" width="48%" />
-
-        <CButton
-          background="#2065D1"
-          color="white"
-          width="100%"
-          ariant="contained"
-          onClick={handleAdd}
-          label="Submit"
+        <CTextField name="phone" full={true} label="Phone Number" margin="10px 0px" width="48%" />
+        <GoogleLocationField />
+        <CTextField name="venue_name" full={true} label="Venue Name(English)" margin="10px 0px" width="48%" />
+        <CTextField name="address" full={true} label="Address(English)" margin="10px 0px" width="48%" />
+        {/* <CTextField
+          name="detailed_address"
+          full={true}
+          label="Detailed Address(English)"
+          margin="10px 0px"
+          width="48%"
+        /> */}
+        <CTextField
+          name="venue_commission"
+          full={true}
+          label="Venue commission sharing ratio"
+          margin="10px 0px"
+          width="48%"
+          type="number"
         />
+        <CTextField name="venue_remark" full={true} label="Venue Remark" margin="10px 0px" width="48%" />
+        <CTextField name="venue_area" full={true} label="Venue Area (m²)" margin="10px 0px" width="48%" />
+        {/* <CTextField
+          name="venue_commission"
+          full={true}
+          label="Venue commission sharing ratio (%)"
+          margin="10px 0px"
+          width="48%"
+        /> */}
+        <CSelect
+          width="48%"
+          label="Venue Category"
+          data={userData}
+          value={selectedProfile}
+          setValue={setSelectedProfile}
+        />
+        <CTextField name="venue_contact" full={true} label="Venue Contact" margin="10px 0px" width="48%" />
+        <CTimePicker label="Business Hours Starts At" />
+        <CTimePicker label="Business Hours Ends At" />
+        <Box sx={{ textAlign: 'end', width: '100%' }}>
+          <hr style={{ opacity: '25%' }} />
+          <CButton
+            background="#2065D1"
+            color="white"
+            width="10%"
+            ariant="contained"
+            onClick={handleAdd}
+            label="Cancel"
+          />
+          <CButton
+            margin="0px 10px"
+            background="#2065D1"
+            color="white"
+            width="10%"
+            ariant="contained"
+            onClick={handleAdd}
+            label="Submit"
+          />
+        </Box>
       </div>
     </div>
   );
