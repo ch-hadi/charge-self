@@ -6,7 +6,7 @@ const CTextField = (props) => {
     <TextField
       style={{ width: props.width ? props.width : 'auto', margin: props.margin ? props.margin : 'auto' }}
       fullWidth={props.full ? props.full : false}
-      size="medium"
+      size={props.size ? props.size : 'medium'}
       onChange={props.onChange}
       id="outlined-basic"
       label={props.label}

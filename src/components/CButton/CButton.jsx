@@ -11,6 +11,7 @@ const CButton = (props) => {
         width: props.width ? props.width : 'auto',
         background: props.background ? props.background : 'auto',
         margin: props.margin || 'auto',
+        border: props.border || 'auto',
       }}
     >
       {props.label}

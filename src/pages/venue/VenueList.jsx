@@ -96,10 +96,18 @@ export default function VenueList() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [addVenue, setAddVenue] = useState(false);
-  const [editUser, setEditUser] = useState(false);
+
+  const [editVenue, setEditVenue] = useState(false);
+
+  const [myDevices, setMyDevices] = useState(false);
+
+  const [operationLog, setOperationLog] = useState(false);
+
+  const [orderList, setOrderList] = useState(false);
   const [editData, setEditData] = useState('');
+
   const handleOpenMenu = (event) => {
-    // setEditUser(true);
+    // setEditVenue(true);
     setEditData(event.row);
     setOpen(event.e.currentTarget);
   };
@@ -170,7 +178,12 @@ export default function VenueList() {
 
       <Container>
         {addVenue && <CModel filter="add-venue" open={addVenue} setOpen={setAddVenue} />}
-        {editUser && <CModel filter="edit-user" open={editUser} setOpen={setEditUser} data={editData} />}
+        {editVenue && <CModel filter="edit-venue" open={editVenue} setOpen={setEditVenue} data={editData} />}
+        {myDevices && <CModel filter="venue_myDevices" open={myDevices} setOpen={setMyDevices} data={editData} />}
+        {operationLog && (
+          <CModel filter="venue_operation_log" open={operationLog} setOpen={setOperationLog} data={editData} />
+        )}
+        {orderList && <CModel filter="venue_order_list" open={orderList} setOpen={setOrderList} data={editData} />}
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Venues
@@ -182,7 +195,6 @@ export default function VenueList() {
 
         <Card>
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -299,7 +311,7 @@ export default function VenueList() {
       >
         <MenuItem
           onClick={() => {
-            setEditUser(true);
+            setEditVenue(true);
             setOpen(null);
           }}
         >
@@ -308,18 +320,28 @@ export default function VenueList() {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            setEditUser(true);
+            setMyDevices(true);
             setOpen(null);
           }}
         >
           <Iconify icon={'tabler:device-mobile'} sx={{ mr: 2 }} />
           My Device
         </MenuItem>
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            setOrderList(true);
+            setOpen(null);
+          }}
+        >
           <Iconify icon={'eva:shopping-cart-outline'} sx={{ mr: 2 }} />
           Order List
         </MenuItem>
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            setOperationLog(true);
+            setOpen(null);
+          }}
+        >
           <Iconify icon={'eva:file-text-outline'} sx={{ mr: 2 }} />
           Operation Log
         </MenuItem>

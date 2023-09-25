@@ -10,6 +10,10 @@ import EditOrganization from './EditOrganization';
 import UserOrderTable from '../../pages/user/OrderTable';
 import OperationLog from '../../pages/user/OperationLog';
 import AddVenue from './AddVenue';
+import EditVenue from './EditVenue';
+import Venue_MyDevice from './Venue_MyDevice';
+import OperationLog_Venue from '../../pages/venue/OperationLog_Venue';
+import OrderList_Venue from '../../pages/venue/OrderList_Venue';
 
 const style = {
   position: 'absolute',
@@ -52,6 +56,14 @@ export default function CModel(props) {
             <OperationLog data={props.data} open={props.open} setOpen={props.setOpen} />
           ) : props.filter == 'add-venue' ? (
             <AddVenue data={props.data} open={props.open} setOpen={props.setOpen} />
+          ) : props.filter == 'edit-venue' ? (
+            <EditVenue data={props.data} open={props.open} setOpen={props.setOpen} />
+          ) : props.filter == 'venue_myDevices' ? (
+            <Venue_MyDevice data={props.data} open={props.open} setOpen={props.setOpen} />
+          ) : props.filter == 'venue_operation_log' ? (
+            <OperationLog_Venue data={props.data} open={props.open} setOpen={props.setOpen} />
+          ) : props.filter == 'venue_order_list' ? (
+            <OrderList_Venue data={props.data} open={props.open} setOpen={props.setOpen} />
           ) : (
             ''
           )}
